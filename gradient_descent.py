@@ -1,24 +1,3 @@
-"""
-Name:
-
-Please:
-    - set breakpoints and walk through this lab.
-    - verify the dimensions of the arrays
-    - verify values with your hand calculations
-    - seek to understand, not to just get it done
-
-Lab: Gradient Descent
-  - use genFirstDataSet() to get your Cost and GradientDescent functions to work
-  - then use genDataSet() to get a random set of data with a given variance (sigma)
-
-ToDo:
-    - plot random data (20 values)
-    - plot your predicted line given w0 and w1
-    - plot the cost curve
-    - answer the questions in the lab in the commented area at the end
-    - congratulate yourself - you passed a major milestone!
-
-"""
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -45,12 +24,6 @@ def costFunc(x, weights, y):
     cost = np.square(predicted - y)
     return np.sum(cost)
 
-
-# todo: compute the cost using numpy, not for-loops
-
-
-
-
 def gradDesc(x, weights, y):
     n = len(x)
     predicted = np.dot(x,weights)
@@ -58,16 +31,10 @@ def gradDesc(x, weights, y):
     gradient = np.dot(x.T,cost)/n
     return gradient
 
-
-
-
-# todo: compute the gradient descent using numpy, not for-loops
-
 # Call data generation functions
 #data = genFirstDataSet()
 data = genDataSet(20, 2, 2, 0, 0, 20)
 
-# todo:  using the split function with data to separate x and y
 x = data[:,0:2]
 y =data[:,2:3]
 print(x.shape)
@@ -82,7 +49,6 @@ maxIter = 50
 # Create array to store costs per iteration
 costArray = []
 
-# todo: Write your main loop
 """
 Call the cost function, the gradient function, and then update the weights with the given learning rate.   
 Store the value of the cost function into an array so you can display the cost function, 
@@ -95,8 +61,6 @@ for i in range(maxIter):
     costArray.append(costFunc(x,weights,y))
     weights -= LR*(gradDesc(x,weights,y))
 
-#print(costArray)
-# todo: plot the best fit line
 '''
   - use np.argmin() to find the index of the minimum value in x
   - use np.argmax() to find the index of the maximum value in x
@@ -126,16 +90,3 @@ ax2 = fig2.add_axes([0.1, 0.1, 0.8, 0.8])
 ax2.plot(range(maxIter), costArray, color='blue')
 ax2.set(title='Cost vs. Iterations', xlabel='iterations', ylabel='cost')
 plt.show()
-
-# todo: answer analysis questions in the lab here.
-'''
-Compare and Contrast
-
-1) Increase the learning rate. At what point does the model fail to train?
-It works at 0.01, but fails at 0.02.
-2) Decrease the learning rate.  What happens to the Cost Function graph?
-It takes much more iterations for the cost to get close to 0
-3) Display the final weights and compare with the expected values.  What can 
-    you change to make your model more accurate?
-I could make more iterations of the main loop so that cost would be closer to 0
-'''
